@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/navy"
+    tools:context=".ui.intro.IntroActivity">
+
+    <View
+        android:id="@+id/ringBackground"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/circle_gradient"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textBelow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp"/>
+
+    <ImageView
+        android:id="@+id/pillsImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/medicine"
+        app:layout_constraintTop_toTopOf="@id/ringBackground"
+        app:layout_constraintBottom_toBottomOf="@id/ringBackground"
+        app:layout_constraintStart_toStartOf="@id/ringBackground"
+        app:layout_constraintEnd_toEndOf="@id/ringBackground" />
+
+    <TextView
+        android:id="@+id/textBelow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Track"
+        android:textColor="@android:color/white"
+        android:textSize="35sp"
+        app:layout_constraintTop_toBottomOf="@id/ringBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/your"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        app:layout_constraintTop_toBottomOf="@id/textBelow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/med"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medication"
+        android:textColor="@android:color/white"
+        android:textSize="35sp"
+        app:layout_constraintTop_toBottomOf="@id/your"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
