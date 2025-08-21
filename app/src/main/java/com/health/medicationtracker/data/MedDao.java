@@ -19,7 +19,14 @@ public interface MedDao {
     @Query("SELECT * FROM medication")
     LiveData<List<Medication>> getAllMedication();
 
+    // for testing
+    @Query("SELECT * FROM medication")
+    List<Medication> getAllMedicationList();
+
     @Delete
     void delete(Medication medication);
+
+    @Query("DELETE FROM medication")
+    void deleteAllMedication();
 
 }
