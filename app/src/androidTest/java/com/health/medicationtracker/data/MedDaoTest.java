@@ -1,4 +1,4 @@
-package com.health.medicationtracker.ui.login.data;
+package com.health.medicationtracker.data;
 
 import static org.junit.Assert.*;
 
@@ -9,8 +9,6 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 
-import com.health.medicationtracker.data.MedDao;
-import com.health.medicationtracker.data.MedsDatabase;
 import com.health.medicationtracker.model.Medication;
 
 import org.junit.After;
