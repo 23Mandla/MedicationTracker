@@ -4,10 +4,13 @@ import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.lifecycle.LiveData;
+
 import com.health.medicationtracker.data.MedDao;
 import com.health.medicationtracker.data.MedsDatabase;
 import com.health.medicationtracker.model.Medication;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,9 +29,25 @@ public class Repository {
 
     }
 
-    public void insert(Medication medication){
+    public void AddMedication(Medication medication){
         executorService.execute(() -> {
             medDao.insert(medication);
+        });
+    }
+
+    public void deleteMedication(Medication medication){
+        executorService.execute(() -> {
+            medDao.delete(medication);
+        });
+    }
+
+    public LiveData<List<Medication>> getAllMedication(){
+        return medDao.getAllMedication();
+    }
+
+    public void deleteAllMedication(){
+        executorService.execute(() -> {
+            medDao.deleteAllMedication();
         });
     }
 }
