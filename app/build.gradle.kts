@@ -37,6 +37,7 @@ android {
 
 dependencies {
 
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
     implementation(libs.androidx.room.runtime)
     testImplementation(libs.androidx.core)
     // If this project only uses Java source, use the Java annotationProcessor

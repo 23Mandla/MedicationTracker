@@ -1,4 +1,4 @@
-package com.health.medicationtracker.data;
+package com.health.medicationtracker.ui.login.data;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +9,8 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 
+import com.health.medicationtracker.data.MedDao;
+import com.health.medicationtracker.data.MedsDatabase;
 import com.health.medicationtracker.model.Medication;
 
 import org.junit.After;
@@ -40,10 +42,10 @@ public class MedDaoTest {
         Medication meds = new Medication("Paracetamol", "500mg", "Once a day");
         medicationDao.insert(meds);
 
-        LiveData<List<Medication>> medicationList = medicationDao.getAllMedication();
-        assertEquals(1, medicationList.getValue().size());
+        List<Medication> medicationList = medicationDao.getAllMedicationList();
+        assertEquals(1, medicationList.size());
 
-        Medication medication = medicationList.getValue().get(0);
+        Medication medication = medicationList.get(0);
         assertEquals(meds.getName(), medication.getName());
         assertEquals(meds.getDosage(), medication.getDosage());
         assertEquals(meds.getFrequency(), medication.getFrequency());
