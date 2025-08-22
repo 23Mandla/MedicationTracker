@@ -45,6 +45,11 @@ public class Repository {
         return medDao.getAllMedication();
     }
 
+    //testing
+    public List<Medication> getAllMedicationList(){
+        return medDao.getAllMedicationList();
+    }
+
     public void deleteAllMedication(){
         executorService.execute(() -> {
             medDao.deleteAllMedication();
