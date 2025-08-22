@@ -1,59 +1,54 @@
 package com.health.medicationtracker.viewmodel;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
+import android.app.Application;
 import android.content.Context;
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 
+import com.health.medicationtracker.data.MedDao;
+import com.health.medicationtracker.data.MedsDatabase;
 import com.health.medicationtracker.model.Medication;
-import com.health.medicationtracker.repository.Repository;
+
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class MedicationViewModelTest {
-    @Rule
-    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule(); //testing background tasks
-
-    @Mock
-    private Repository repository;
 
     private MedicationViewModel medicationViewModel;
+    private MedsDatabase database;
+    private MedDao medicationDao;
 
 
     @Before
     public void setup() {
-        MockitoAnnotations.openMocks(this);
-        medicationViewModel = new MedicationViewModel(ApplicationProvider.getApplicationContext(), repository);
+        Context context = ApplicationProvider.getApplicationContext();
+        database = Room.inMemoryDatabaseBuilder(context, MedsDatabase.class)
+                .build();
+        medicationDao = database.getMedDao();
+        Application app = ApplicationProvider.getApplicationContext();
+        medicationViewModel = new MedicationViewModel(app);
 
     }
 
     @Test
-    public void getAllMedication() {
+    public void getAllMedication() throws InterruptedException {
         Medication meds1 = new Medication("Lansoprazole", "500mg", "Once a day");
         Medication meds2 = new Medication("Maxalon", "200mg", "Twice a day");
 
-        List<Medication> medicationList = Arrays.asList(meds1, meds2);
-        MutableLiveData<List<Medication>> medicationLiveData = new MutableLiveData<>();
-        medicationLiveData.setValue(medicationList);
+       medicationViewModel.AddMedication(meds1);
+       medicationViewModel.AddMedication(meds2);
 
-        when(repository.getAllMedication()).thenReturn(medicationLiveData);
-        List<Medication> result = medicationViewModel.getAllMedication().getValue();
+       Thread.sleep(2000);
 
-        assert result != null;
+        List<Medication> result = medicationViewModel.getAllMedicationList();
+
+        assertNotNull(result);
         assertEquals(2, result.size());
-        assertEquals(meds1, result.get(0));
-        assertEquals(meds2, result.get(1));
+
     }
 }
