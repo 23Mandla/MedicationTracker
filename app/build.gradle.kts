@@ -37,9 +37,18 @@ android {
 
 dependencies {
 
-    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    // ByteBuddy (Mockito depends on it)
+    testImplementation(libs.byte.buddy)
+    testImplementation(libs.byte.buddy.agent)
+
+    // Needed for LiveData unit tests
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.androidx.core.testing)
     implementation(libs.androidx.room.runtime)
     testImplementation(libs.androidx.core)
+    androidTestImplementation(libs.androidx.core.testing)
+
     // If this project only uses Java source, use the Java annotationProcessor
     // No additional plugins are necessary
     annotationProcessor(libs.androidx.room.room.compiler)
