@@ -20,13 +20,18 @@ public class MedicationViewModel extends AndroidViewModel {
     }
 
     //for testing
-    public MedicationViewModel(Repository repository){
-        super(null);
+    public MedicationViewModel(Application application, Repository repository){
+        super(application);
         this.repository = repository;
     }
 
     public LiveData<List<Medication>> getAllMedication(){
         return repository.getAllMedication();
+    }
+
+    //testing
+    public List<Medication> getAllMedicationList(){
+        return repository.getAllMedicationList();
     }
 
     public void AddMedication(Medication medication){
