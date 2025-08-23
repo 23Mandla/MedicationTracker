@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     //data binding
     private ActivityMainBinding binding_main_activity;
+    private MainClickHandlers mainClickHandlers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,18 +62,17 @@ public class MainActivity extends AppCompatActivity {
 
         //data binding
         binding_main_activity = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mainClickHandlers = new MainClickHandlers(this);
+        binding_main_activity.setClickEvents(mainClickHandlers);
 
         //database
         medication_database = MedsDatabase.getInstance(this);
 
         //view model use on the add contact handler, when you create a class to this
         MedicationViewModel medicationViewModel = new ViewModelProvider(this).get(MedicationViewModel.class);
+        medicationViewModel.deleteAllMedication();
         medicationViewModel.AddMedication(new Medication("Lansoprazole", "500mg", "Once a day"));
         medicationViewModel.AddMedication(new Medication("Maxalon", "200mg", "Twice a day"));
-
-        //add data to the list
-        medicationList.add(new Medication("Lansoprazole", "500mg", "Once a day"));
-        medicationList.add(new Medication("Maxalon", "200mg", "Twice a day"));
 
         //once adding page is setup
         medicationViewModel.getAllMedication().observe(this, medications -> {
@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(medicationAdapter);
-
 
     }
 }
