@@ -38,7 +38,7 @@ public class MedicationViewModel extends AndroidViewModel {
         repository.AddMedication(medication);
     }
 
-    public void DeleteAllMedication(Medication medication){
+    public void deleteAllMedication(){
         repository.deleteAllMedication();
     }
 
