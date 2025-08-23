@@ -16,6 +16,7 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
     private ArrayList<Medication> medicationList;
 
     public MedicationAdapter(ArrayList<Medication> medicationList) {
+        medicationList.clear();
         this.medicationList = medicationList;
 
     }
@@ -65,6 +66,7 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
     public Medication getMedication(int position){
         return medicationList.get(position);
     }
+
 
     public void removeMedication(int position){
         medicationList.remove(position);
