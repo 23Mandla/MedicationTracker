@@ -8,61 +8,78 @@
             type="com.health.medicationtracker.model.Medication" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
+        android:elevation="20dp"
+        app:cardCornerRadius="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img_meds"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:contentDescription="TODO"
-            android:src="@drawable/pill"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/meds_info"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingStart="16dp"
-            android:id="@+id/meds_info"
-            app:layout_constraintStart_toEndOf="@+id/img_meds"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/more"
-            >
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="10dp">
 
-            <TextView
-                android:id="@+id/med_name"
+            <ImageView
+                android:id="@+id/img_meds"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="TODO"
+                android:src="@drawable/pill"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintEnd_toStartOf="@+id/meds_info"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{medication.name}"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:id="@+id/meds_info"
+                app:layout_constraintStart_toEndOf="@+id/img_meds"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/more"
 
-            <!--TODO write an algorithm to suggest time to take pill: based on frequency-->
-            <TextView
-                android:id="@+id/med_dosage"
+                >
+
+                <TextView
+                    android:id="@+id/med_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{medication.name}"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!--TODO write an algorithm to suggest time to take pill: based on frequency-->
+                <TextView
+                    android:id="@+id/med_dosage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="09:00 AM"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="09:00 AM"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:src="@drawable/right_arrow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/meds_info"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                />
 
-        <ImageView
-            android:id="@+id/more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/right_arrow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/meds_info"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
