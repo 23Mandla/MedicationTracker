@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.health.medicationtracker.R;
 import com.health.medicationtracker.data.MedsDatabase;
 import com.health.medicationtracker.databinding.ActivityMainBinding;
+import com.health.medicationtracker.databinding.AddMedicationBinding;
 import com.health.medicationtracker.model.Medication;
 import com.health.medicationtracker.ui.adapter.MedicationAdapter;
 import com.health.medicationtracker.viewmodel.MedicationViewModel;
@@ -40,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
     //data binding
     private ActivityMainBinding binding_main_activity;
     private MainClickHandlers mainClickHandlers;
+    Medication medication;
+    private AddMedicationHandler addMedicationHandler;
+
+    AddMedicationBinding binding_add_medication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         //data binding
         binding_main_activity = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mainClickHandlers = new MainClickHandlers(this);
+        medication = new Medication();
+        mainClickHandlers = new MainClickHandlers(this, medication);
         binding_main_activity.setClickEvents(mainClickHandlers);
 
         //database
@@ -63,11 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
         //view model use on the add contact handler, when you create a class to this
         MedicationViewModel medicationViewModel = new ViewModelProvider(this).get(MedicationViewModel.class);
-        medicationViewModel.deleteAllMedication();
-        medicationViewModel.AddMedication(new Medication("Lansoprazole", "500mg", "Once a day"));
-        medicationViewModel.AddMedication(new Medication("Maxalon", "200mg", "Twice a day"));
+        medicationViewModel.deleteAllMedication(); //TODO remove once delete on swipe has been implemented
 
-        //once adding page is setup
+        //once adding page is setup observer data, brings it to main activity
         medicationViewModel.getAllMedication().observe(this, medications -> {
             medicationAdapter.setMedicationList((ArrayList<Medication>) medications);
         });
