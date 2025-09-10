@@ -51,8 +51,6 @@ public class Repository {
     }
 
     public void deleteAllMedication(){
-        executorService.execute(() -> {
-            medDao.deleteAllMedication();
-        });
+        executorService.execute(medDao::deleteAllMedication);
     }
 }
