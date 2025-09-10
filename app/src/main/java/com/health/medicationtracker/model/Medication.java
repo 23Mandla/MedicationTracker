@@ -11,15 +11,29 @@ public class Medication {
     private int id;
 
     @ColumnInfo
-    private final String name;
+    private String name;
     @ColumnInfo
-    private final String dosage;
+    private String dosage;
     @ColumnInfo
-    private final String frequency;
+    private String frequency;
 
     public Medication(String name, String dosage, String frequency) {
         this.name = name;
         this.dosage = dosage;
+        this.frequency = frequency;
+    }
+
+    public Medication(){}
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDosage(String dosage) {
+        this.dosage = dosage;
+    }
+
+    public void setFrequency(String frequency) {
         this.frequency = frequency;
     }
 
