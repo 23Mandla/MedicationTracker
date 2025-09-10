@@ -2,6 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="medication"
+            type="com.health.medicationtracker.model.Medication" />
+
+        <variable
+            name="handler"
+            type="com.health.medicationtracker.ui.main.AddMedicationHandler" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,6 +61,7 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:inputType="text"
+            android:text="@={medication.name}"
             app:layout_constraintTop_toBottomOf="@+id/med_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +80,7 @@
             />
 
         <EditText
+            android:text="@={medication.dosage}"
             android:id="@+id/med_dosage_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,6 +104,7 @@
             />
 
         <EditText
+            android:text="@={medication.frequency}"
             android:id="@+id/med_frequency_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -144,6 +157,7 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <Button
+            android:onClick="@{handler::addMedication}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Schedule"
@@ -153,7 +167,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
